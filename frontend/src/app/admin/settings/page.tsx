@@ -272,12 +272,14 @@ export default function AdminSettingsPage() {
 
         // Dropdowns
         if (key === 'app_theme' || key === 'service_charge_type' || key === 'service_charge_scope' || key === 'manual_payment_workflow') {
-            const options = {
+            const dropdownOptions = {
                 app_theme: ['light', 'dark', 'system'],
                 service_charge_type: ['fixed', 'percentage'],
                 service_charge_scope: ['global', 'per_due'],
                 manual_payment_workflow: ['standard', 'instant']
-            }[key as keyof typeof options] || [];
+            };
+
+            const options = dropdownOptions[key as keyof typeof dropdownOptions] || [];
 
             return (
                 <select className="input-field py-2 text-xs font-bold" value={val} onChange={(e) => handleChange(key, e.target.value)}>
@@ -425,8 +427,8 @@ export default function AdminSettingsPage() {
                                         key={sub.id}
                                         onClick={() => setActiveTab(sub.id)}
                                         className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-bold transition-all ${activeTab === sub.id
-                                                ? 'bg-primary text-white shadow-md'
-                                                : 'text-gray-600 hover:bg-gray-50'
+                                            ? 'bg-primary text-white shadow-md'
+                                            : 'text-gray-600 hover:bg-gray-50'
                                             }`}
                                     >
                                         <span className="text-base">{sub.icon}</span>
